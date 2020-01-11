@@ -62,6 +62,7 @@ app.get('/', (req, res) => {
 
     //Bio IG
     function bioIG(token, igid){
+            console.log("checked bioig of "+ igid);
             const p1 = instaProf.getFullname(igid);
             const p2 = instaProf.getBio(igid);
             const p3 = instaProf.getPosts(igid);
@@ -69,7 +70,6 @@ app.get('/', (req, res) => {
             const p5 = instaProf.getFollowing(igid);
             const p6 = instaProf.getExternalUrl(igid);
             Promise.all([p1,p2,p3,p4,p5,p6]).then(function(values){
-                console.log(values);
                 const fullName = (values[0].data)? values[0].data : '-';
                 const igbio = checkBio(values[1].data);
                 const iglink = (values[5].data)? values[5].data : '-';
@@ -80,11 +80,11 @@ app.get('/', (req, res) => {
 
     // Profil IG
     function profilIG(token, igid){
+        console.log("checked profile picture of "+igid);
 	    const p1 = instaProf.instaRegular(igid);
         const p2 = instaProf.instaHighDefinition(igid);
         
         Promise.all([p1,p2]).then(function(values){
-            console.log(values);
             return client.replyMessage(token, {
                 type: "image", originalContentUrl: values[1], previewImageUrl: values[0]
             });    
@@ -93,11 +93,10 @@ app.get('/', (req, res) => {
 
     // Story IG
     function IGstory(token,igid, number){
+        console.log("checked "+ number + "IGstory of "+ igid);
         const url = `https://api.storiesig.com/stories/${igid}`;
 
 	const p1 = got(url).json().then(res => {
-        console.log("res: " + res);
-        console.log("res.body: " + res.items);
 		const base = res.items;
 		const stories = {story: [],preview: []};
 
@@ -108,8 +107,6 @@ app.get('/', (req, res) => {
         return stories;
     });
         Promise.all([p1]).then(function(values){
-        console.log("values[0].story[0]: " + values[0].story[0]);
-        console.log("values[0].preview[0]: " + values[0].preview[0]);
         if(values[0].story[number].includes(".mp4")){
             return client.replyMessage(token, {
                 type: "video", originalContentUrl: values[0].story[number], previewImageUrl: values[0].preview[number]
@@ -125,6 +122,7 @@ app.get('/', (req, res) => {
 
     // Multipost IG
     function IGmulti(token, igid, number){
+        console.log("checked "+number+" multipost of "+ igid);
         const p1 = instaDown(igid).then(hasil => {
             const { entry_data: { PostPage } } = hasil;
             return PostPage.map(post => post.graphql.shortcode_media.edge_sidecar_to_children.edges);
@@ -138,12 +136,9 @@ app.get('/', (req, res) => {
                 videoUrl === undefined ? list.media.push(edge) : list.media.push(videoUrl);
                 list.preview.push(edge);
             }
-            console.log("data: " + list);
     	    return list;
         })
         Promise.all([p1]).then(function(values){
-            console.log("values[0].media[0]: " + values[0].media[0]);
-            console.log("values[0].preview[0]: " + values[0].preview[0]);
             if(values[0].media[number].includes(".mp4")){
                 return client.replyMessage(token, {
                     type: "video", originalContentUrl: values[0].media[number], previewImageUrl: values[0].preview[number]
@@ -159,9 +154,9 @@ app.get('/', (req, res) => {
 
     // Caption IG
     function IGcapt(token, igid){
+        console.log("checked caption of "+ igid);
         const p1 = instaDown(igid).then(data => {
             const { entry_data: { PostPage } } = data;
-            console.log(PostPage.map(post => post.graphql.shortcode_media.edge_media_to_caption.edges[0]));
             return PostPage.map(post => post.graphql.shortcode_media.edge_media_to_caption.edges[0])
         }).catch(function(){
             return replyText(token,"Maaf, sepertinya akunnya private.")
@@ -169,7 +164,6 @@ app.get('/', (req, res) => {
             return replyText(token,"Maaf, sepertinya akunnya private.")
         })
         Promise.all([p1]).then(function(values){
-            console.log(values[0][0]);
             return replyText(token, "𝐂𝐚𝐩𝐭𝐢𝐨𝐧:\n" + values[0][0]);
             }).catch(function(){
                 return replyText(token,"Maaf, sepertinya akunnya private.")
@@ -179,9 +173,9 @@ app.get('/', (req, res) => {
 
     // Foto Vid IG
     function IGfoto(token, igid){
+        console.log("checked photo of "+ igid);
         const p1 = instaDown(igid).then(data => {
             const { entry_data: { PostPage } } = data;
-            console.log(PostPage.map(post => post.graphql.shortcode_media));
             return PostPage.map(post => post.graphql.shortcode_media)
         }).catch(function(){
             return replyText(token,"Maaf, sepertinya akunnya private.")
@@ -189,7 +183,6 @@ app.get('/', (req, res) => {
             return replyText(token,"Maaf, sepertinya akunnya private.")
         })
         Promise.all([p1]).then(function(values){
-            console.log(values);
             return client.replyMessage(token, {
             type: "image", originalContentUrl: values[0][0], previewImageUrl: values[0][0]
         }).catch(function(){
@@ -198,9 +191,9 @@ app.get('/', (req, res) => {
         })
     }
     function IGvid(token, igid){
+        console.log("checked video of "+ igid);
         const p1 = instaDown(igid).then(data => {
             const { entry_data: { PostPage } } = data;
-            console.log(PostPage.map(post => post.graphql.shortcode_media));
             return PostPage.map(post => post.graphql.shortcode_media)
         }).catch(function(){
             return replyText(token,"Maaf, sepertinya akunnya private.")
@@ -209,7 +202,6 @@ app.get('/', (req, res) => {
         })
         const p2 = instaDown(igid).then(data => {
             const { entry_data: { PostPage } } = data;
-            console.log(PostPage.map(post => post.graphql.shortcode_media));
             return PostPage.map(post => post.graphql.shortcode_media)
         }).catch(function(){
             return replyText(token,"Maaf, sepertinya akunnya private.")
@@ -217,7 +209,6 @@ app.get('/', (req, res) => {
             return replyText(token,"Maaf, sepertinya akunnya private.")
         })
         Promise.all([p1,p2]).then(function(values){
-            console.log(values);
             return client.replyMessage(token, {
             type: "video", originalContentUrl: values[1][0], previewImageUrl: values[0][0]
         }).catch(function(){
