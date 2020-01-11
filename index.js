@@ -119,7 +119,7 @@ app.get('/', (req, res) => {
                 type: "image", originalContentUrl: values[0].story[number], previewImageUrl: values[0].preview[number]
             })
         }}).catch(function(){
-            return replyText(token,"Maaf, sepertinya ada yang salah...\nMungkin, akunnya private atau tidak sedang memilik story,\n atau jangan-jangan angka yang kamu masukkan kelebihan... ?")
+            return replyText(token,"Maaf, sepertinya ada yang salah...\nMungkin, akunnya private atau tidak sedang memiliki story...\natau jangan-jangan angka yang kamu masukkan kelebihan... ?")
         });
     }
 
@@ -251,7 +251,9 @@ app.get('/', (req, res) => {
       return replyText(event.replyToken, sendIntro);
     } else {
         const receivedMessage = event.message.text;
-        if (receivedMessage.split(" ").length === 3){
+        if(receivedMessage.includes("/echo ")){
+            return replyText(event.replyToken, doEcho(receivedMessage));
+        } else if (receivedMessage.split(" ").length === 3){
             const splitText = receivedMessage.split(" ");
             const command = splitText[0];
             const link = splitText[1];
@@ -262,8 +264,6 @@ app.get('/', (req, res) => {
                 case '/storyig':
                     const numbstory = parseInt(splitText[2]);
                     return IGstory(event.replyToken, link, numbstory-1);
-                case '/echo':
-                    return replyText(event.replyToken, link + " " + split.text[2]);
                 default:
                     return replyText(event.replyToken, errormess);
             }
@@ -274,24 +274,16 @@ app.get('/', (req, res) => {
             switch (inicommand) {
                 case '/videoig':
                     return IGvid(event.replyToken, link);
-                    break;
                 case '/fotoig':
                     return IGfoto(event.replyToken, link);
-                    break;
                 case '/captionig':
                     return IGcapt(event.replyToken, link);
-                    break;
                 case '/storyig':
                     return replyText(event.replyToken, tutorStory);
-                    break;
                 case '/bioig':
                     return bioIG(event.replyToken, link);
-                    break;
                 case '/profilig':
                     return profilIG(event.replyToken, link);
-                    break;
-        		case '/echo':
-        		    return replyText(event.replyToken, link);
                 case '/multipost':
                     return replyText(event.replyToken, tutorMulti);
                 default:
@@ -317,8 +309,6 @@ app.get('/', (req, res) => {
                     return replyText(event.replyToken, tutorPP);
                 case '/about':
                     return replyText(event.replyToken, aboutMe);
-                case '/echo':
-                    return replyText(event.replyToken, doEcho(receivedMessage));
                 default:
                     return replyText(event.replyToken, sendIntro);
             }
