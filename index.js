@@ -5,6 +5,7 @@ var request = require("request");
 const instaProf = require('instagram-basic-data-scraper-with-username');
 const instaDown = require('instagram-downloader');
 const instaStory = require('instory');
+const got = require('got');
 
 // create LINE SDK config from env variables
 const config = {
