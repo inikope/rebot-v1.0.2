@@ -250,11 +250,11 @@ app.get('/', (req, res) => {
             const link = splitText[1];
             switch (command){
                 case '/multipost':
-                    const number = parseInt(splitText[2]);
-                    return IGmulti(event.replyToken, link, number-1);
+                    const numbpost = parseInt(splitText[2]);
+                    return IGmulti(event.replyToken, link, numbpost-1);
                 case '/storyig':
-                    const number = parseInt(splitText[2]);
-                    return IGstory(event.replyToken, link, number-1);
+                    const numbstory = parseInt(splitText[2]);
+                    return IGstory(event.replyToken, link, numbstory-1);
                 case '/echo':
                     return replyText(event.replyToken, link + " " + split.text[2]);
                 default:
