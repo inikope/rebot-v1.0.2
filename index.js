@@ -91,7 +91,7 @@ app.get('/', (req, res) => {
     function IGstory(token,igid, number){
         const url = `https://api.storiesig.com/stories/${igid}`;
 
-	const p1 = got(url, {json: true}).then(res => {
+	const p1 = got(url).json().then(res => {
 		const base = res.body.items;
 		const stories = {story: [],preview: []};
 
