@@ -93,8 +93,8 @@ app.get('/', (req, res) => {
 
 	const p1 = got(url).json().then(res => {
         console.log("res: " + res);
-        console.log("res.body: " + res.body);
-		const base = res.body.items;
+        console.log("res.body: " + res.items);
+		const base = res.items;
 		const stories = {story: [],preview: []};
 
 		for (let i = 0; i < base.length; i++) {
