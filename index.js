@@ -92,6 +92,8 @@ app.get('/', (req, res) => {
         const url = `https://api.storiesig.com/stories/${igid}`;
 
 	const p1 = got(url).json().then(res => {
+        console.log("res: " + res);
+        console.log("res.body: " + res.body);
 		const base = res.body.items;
 		const stories = {story: [],preview: []};
 
