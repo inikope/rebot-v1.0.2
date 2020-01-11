@@ -1,0 +1,23 @@
+{
+  "name": "rebot-v1.0.2",
+  "version": "1.0.2",
+  "description": "RE:BOT",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "RE:BOT"
+  ],
+  "author": "Kopeyy",
+  "license": "ISC",
+  "dependencies": {
+    "@line/bot-sdk": "^6.8.4",
+    "express": "^4.17.1",
+    "instagram-basic-data-scraper-with-username": "^4.0.1",
+    "instagram-downloader": "0.0.0",
+    "instory": "^1.0.2",
+    "request": "^2.88.0"
+  }
+}
