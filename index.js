@@ -112,9 +112,9 @@ app.get('/', (req, res) => {
             return client.replyMessage(token, {
                 type: "image", originalContentUrl: values[0].story[number], previewImageUrl: values[0].preview[number]
             })
-        }}).catch(function(){
-            return replyText(token,"Maaf, sepertinya akunnya private... Atau, angka yang kamu masukkan kelebihan... ?")
-        });
+        }})//.catch(function(){
+        //     return replyText(token,"Maaf, sepertinya akunnya private... Atau, angka yang kamu masukkan kelebihan... ?")
+        // });
     }
 
     // Multipost IG
