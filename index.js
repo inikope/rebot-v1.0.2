@@ -218,17 +218,17 @@ app.get('/', (req, res) => {
      
      //  Chats
     const sendHelp 		= "𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh...\nCoba yuk command-command 𝙍𝙀:𝘽𝙊𝙏 berikut ini!\n\n\n/𝐡𝐞𝐥𝐩 - Untuk melihat command yang kami punya\n/𝐯𝐢𝐝𝐞𝐨𝐢𝐠 - Untuk menyimpan video dari instagram\n/𝐟𝐨𝐭𝐨𝐢𝐠 - Untuk menyimpan foto dari instagram\n/𝐜𝐚𝐩𝐭𝐢𝐨𝐧𝐢𝐠 - Untuk mengecek caption dari post di instagram\n/𝐦𝐮𝐥𝐭𝐢𝐩𝐨𝐬𝐭 - Untuk menyimpan multiple foto/video dari post instagram\n/𝐛𝐢𝐨𝐢𝐠 - Untuk mengecek bio profil instagram\n/𝐩𝐫𝐨𝐟𝐢𝐥𝐢𝐠 - Untuk mengecek foto profil instagram\n/𝐬𝐭𝐨𝐫𝐲𝐢𝐠 - Untuk menyimpan foto atau video dari instastory\n/𝐚𝐛𝐨𝐮𝐭 - Untuk mengetahui lebih lanjut tentang 𝙍𝙀:𝘽𝙊𝙏\n\n\n\u2665";
-    const tutorFoto	 	= "Begini nih cara menggunakan commandnya\n\n/fotoig (link post instagram)";
-    const tutorVid 		= "Begini nih cara menggunakan commandnya\n\n/videoig (link post instagram)";
-    const tutorStory 	= "Begini nih cara menggunakan commandnya\n\n/storyig (username instagram) (story ke berapa)";
-    const tutorCaption 	= "Begini nih cara menggunakan commandnya\n\n/captionig (link post instagram)";
-    const tutorCek 		= "Begini nih cara menggunakan commandnya\n\n/bioig (username instagram)";
-    const tutorPP 		= "Begini nih cara menggunakan commandnya\n\n/profilig (username instagram)";
-    const tutorMulti    = "Begini nih cara menggunakan commandnya\n\n/multipost (link post instagram) (foto/video ke berapa)";
-    const errormess 	= "Terima kasih atas pesannya\nSayang sekali, akun ini masih goblok";
-    const sendIntro 	=  "𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh..\nCoba yuk!\nKetik /help untuk melihat command-command yang kami punya.\n\n\u2605";
+    const tutorFoto	 	= "Begini loh cara menggunakan commandnya\n\n/fotoig (link post instagram)";
+    const tutorVid 		= "Begini loh cara menggunakan commandnya\n\n/videoig (link post instagram)";
+    const tutorStory 	= "Begini loh cara menggunakan commandnya\n\n/storyig (username instagram) (story ke berapa)";
+    const tutorCaption 	= "Begini loh cara menggunakan commandnya\n\n/captionig (link post instagram)";
+    const tutorCek 		= "Begini loh cara menggunakan commandnya\n\n/bioig (username instagram)";
+    const tutorPP 		= "Begini loh cara menggunakan commandnya\n\n/profilig (username instagram)";
+    const tutorMulti    = "Begini loh cara menggunakan commandnya\n\n/multipost (link post instagram) (foto/video ke berapa)";
+    const errormess 	= "Terima kasih atas pesannya\nTapi maaf, aku ngga ngerti...\nCoba deh ketik /𝐡𝐞𝐥𝐩 nanti aku kasi tau command yang aku bisa \uD83D\uDE09";
+    const sendIntro 	= "𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh..\nCoba yuk!\nKetik /𝐡𝐞𝐥𝐩 untuk melihat command-command yang kami punya.\n\n\u2605";
     const aboutMe 		= "𝙍𝙀:𝘽𝙊𝙏 adalah chatbot yang dapat membantumu menyimpan foto maupun video dari Instagram.\n\n𝙍𝙀:𝘽𝙊𝙏 dibuat oleh:\n- [2201801636] Hans Nugroho Gianto Hadiwijaya\n- [2201758285] Casandra\n- [2201787915] Mita\n\n\n\uD83C\uDF6C";
-    const sendHello 	= "Welcome to 𝙍𝙀:𝘽𝙊𝙏!\n\n𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh..\nCoba yuk!\nKetik /help untuk melihat command-command yang kami punya.";
+    const sendHello 	= "Welcome to 𝙍𝙀:𝘽𝙊𝙏!\n\n𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh..\nCoba yuk!\nKetik /𝐡𝐞𝐥𝐩 untuk melihat command-command yang kami punya.";
 
 
 	if (event.type === 'follow'){
