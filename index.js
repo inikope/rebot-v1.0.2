@@ -55,6 +55,10 @@ app.get('/', (req, res) => {
             return '-';
         }
     }
+    function doEcho(value){
+        value = value.replace("/echo ","");
+        return value;
+    }
 
     //Bio IG
     function bioIG(token, igid){
@@ -114,9 +118,9 @@ app.get('/', (req, res) => {
             return client.replyMessage(token, {
                 type: "image", originalContentUrl: values[0].story[number], previewImageUrl: values[0].preview[number]
             })
-        }})//.catch(function(){
-        //     return replyText(token,"Maaf, sepertinya akunnya private... Atau, angka yang kamu masukkan kelebihan... ?")
-        // });
+        }}).catch(function(){
+            return replyText(token,"Maaf, sepertinya ada yang salah...\nMungkin, akunnya private atau tidak sedang memilik story,\n atau jangan-jangan angka yang kamu masukkan kelebihan... ?")
+        });
     }
 
     // Multipost IG
@@ -288,12 +292,10 @@ app.get('/', (req, res) => {
                     break;
         		case '/echo':
         		    return replyText(event.replyToken, link);
-                    break;
                 case '/multipost':
                     return replyText(event.replyToken, tutorMulti);
                 default:
                     return replyText(event.replyToken, errormess);
-                    break;
             }
         } else {
             switch (receivedMessage) {
@@ -301,31 +303,24 @@ app.get('/', (req, res) => {
                     return replyText(event.replyToken, tutorMulti);
                 case '/help':
                     return replyText(event.replyToken, sendHelp);
-                    break;
                 case '/videoig':
                     return replyText(event.replyToken, tutorVid);
-                    break;
                 case '/fotoig':
                     return replyText(event.replyToken, tutorFoto);
-                    break;
                 case '/captionig':
                     return replyText(event.replyToken, tutorCaption);
-                    break;
                 case '/storyig':
                     return replyText(event.replyToken, tutorStory);
-                    break;
                 case '/bioig':
                     return replyText(event.replyToken, tutorCek);
-                    break;
                 case '/profilig':
                     return replyText(event.replyToken, tutorPP);
-                    break;
                 case '/about':
                     return replyText(event.replyToken, aboutMe);
-                    break;
+                case '/echo':
+                    return replyText(event.replyToken, doEcho(receivedMessage));
                 default:
                     return replyText(event.replyToken, sendIntro);
-                    break;
             }
         }
   }
