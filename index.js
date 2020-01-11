@@ -55,10 +55,6 @@ app.get('/', (req, res) => {
             return '-';
         }
     }
-    function doEcho(value){
-        value = value.replace("/echo ","");
-        return value;
-    }
 
     //Bio IG
     function bioIG(token, igid){
@@ -243,7 +239,8 @@ app.get('/', (req, res) => {
     } else {
         const receivedMessage = event.message.text;
         if(receivedMessage.includes("/echo ")){
-            return replyText(event.replyToken, doEcho(receivedMessage));
+            console.log("I'm echoing "+ receivedMessage.replace("/echo ",""));
+            return replyText(event.replyToken, receivedMessage.replace("/echo ",""));
         } else if (receivedMessage.split(" ").length === 3){
             const splitText = receivedMessage.split(" ");
             const command = splitText[0];
