@@ -227,7 +227,7 @@ app.get('/', (req, res) => {
     const tutorMulti    = "Begini loh cara menggunakan commandnya\n\n/multipost (link post instagram) (foto/video ke berapa)";
     const errormess 	= "Terima kasih atas pesannya\nTapi maaf, aku ngga ngerti...\nCoba deh ketik /𝐡𝐞𝐥𝐩 nanti aku kasi tau command yang aku bisa \uD83D\uDE09";
     const sendIntro 	= "𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh..\nCoba yuk!\nKetik /𝐡𝐞𝐥𝐩 untuk melihat command-command yang kami punya.\n\n\u2605";
-    const aboutMe 		= "𝙍𝙀:𝘽𝙊𝙏 adalah chatbot yang dapat membantumu menyimpan foto maupun video dari Instagram.\n\n𝙍𝙀:𝘽𝙊𝙏 dibuat oleh:\n- [2201801636] Hans Nugroho Gianto Hadiwijaya\n- [2201758285] Casandra\n- [2201787915] Mita\n\n\n\uD83C\uDF6C";
+    const aboutMe 		= "𝙍𝙀:𝘽𝙊𝙏 adalah chatbot yang dapat membantumu menyimpan foto maupun video dari Instagram.\n\n𝙍𝙀:𝘽𝙊𝙏 dibuat oleh:\n- [2201801636] Hans Nugroho Gianto Hadiwijaya\n- [2201758285] Casandra\n- [2201787915] Mita\n- [2201780631] Muhammad Rizqi Sulaiman\n- [2201825674] Muhammad Farkhan Mashuda\n\n\n\uD83C\uDF6C";
     const sendHello 	= "Welcome to 𝙍𝙀:𝘽𝙊𝙏!\n\n𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh..\nCoba yuk!\nKetik /𝐡𝐞𝐥𝐩 untuk melihat command-command yang kami punya.";
 
 
