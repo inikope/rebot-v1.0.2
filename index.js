@@ -71,7 +71,9 @@ app.get('/', (req, res) => {
                 const iglink = (values[5].data)? values[5].data : '-';
                 const sendBio = "𝐍𝐚𝐦𝐚: "+ fullName +"\n𝐁𝐢𝐨:\n"+ igbio + "\n𝐏𝐨𝐬𝐭𝐬: "+ values[2].data +"\n𝐅𝐨𝐥𝐥𝐨𝐰𝐞𝐫𝐬: "+ values[3].data +"\n𝐅𝐨𝐥𝐥𝐨𝐰𝐢𝐧𝐠: "+ values[4].data +"\n𝐋𝐢𝐧𝐤: "+ iglink;
                 return replyText(token, sendBio);    
-            })
+            }).catch(function(){
+                return replyText(token,"Maaf, sepertinya ada yang salah...\nApakah kamu sudah memasukkan username yang benar?")
+            });
     }
 
     // Profil IG
@@ -84,7 +86,9 @@ app.get('/', (req, res) => {
             return client.replyMessage(token, {
                 type: "image", originalContentUrl: values[1], previewImageUrl: values[0]
             });    
-        })
+        }).catch(function(){
+            return replyText(token,"Maaf, sepertinya ada yang salah...\nApakah kamu sudah memasukkan username yang benar?")
+        });
     }
 
     // Story IG
@@ -152,9 +156,9 @@ app.get('/', (req, res) => {
                         type: "image", originalContentUrl: link1, previewImageUrl: link2
                     })
                 }})
-    })//.catch(function(){
-        //     return replyText(token,"Maaf, sepertinya ada yang salah...\nMungkin, akunnya private atau tidak sedang memiliki story...\natau jangan-jangan angka yang kamu masukkan kelebihan... ?")
-        // });
+    }).catch(function(){
+        return replyText(token,"Maaf, sepertinya ada yang salah...\nMungkin, akunnya private atau tidak punya highlight...\natau jangan-jangan angka yang kamu masukkan kelebihan... ?")
+    });
 
 
 
@@ -261,7 +265,7 @@ app.get('/', (req, res) => {
   function handleEvent(event) {
      
      //  Chats
-    const sendHelp 		= "𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh...\nCoba yuk command-command 𝙍𝙀:𝘽𝙊𝙏 berikut ini!\n\n\n/𝐡𝐞𝐥𝐩 - Untuk melihat command yang kami punya\n/𝐯𝐢𝐝𝐞𝐨𝐢𝐠 - Untuk menyimpan video dari instagram\n/𝐟𝐨𝐭𝐨𝐢𝐠 - Untuk menyimpan foto dari instagram\n/𝐜𝐚𝐩𝐭𝐢𝐨𝐧𝐢𝐠 - Untuk mengecek caption dari post di instagram\n/𝐦𝐮𝐥𝐭𝐢𝐩𝐨𝐬𝐭 - Untuk menyimpan multiple foto/video dari post instagram\n/𝐛𝐢𝐨𝐢𝐠 - Untuk mengecek bio profil instagram\n/𝐩𝐫𝐨𝐟𝐢𝐥𝐢𝐠 - Untuk mengecek foto profil instagram\n/𝐬𝐭𝐨𝐫𝐲𝐢𝐠 - Untuk menyimpan foto atau video dari instastory\n/𝐚𝐛𝐨𝐮𝐭 - Untuk mengetahui lebih lanjut tentang 𝙍𝙀:𝘽𝙊𝙏\n\n\n\u2665";
+    const sendHelp 		= "𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh...\nCoba yuk command-command 𝙍𝙀:𝘽𝙊𝙏 berikut ini!\n\n\n/𝐡𝐞𝐥𝐩 - Untuk melihat command yang kami punya\n/𝐯𝐢𝐝𝐞𝐨𝐢𝐠 - Untuk menyimpan video dari instagram\n/𝐟𝐨𝐭𝐨𝐢𝐠 - Untuk menyimpan foto dari instagram\n/𝐜𝐚𝐩𝐭𝐢𝐨𝐧𝐢𝐠 - Untuk mengecek caption dari post di instagram\n/𝐦𝐮𝐥𝐭𝐢𝐩𝐨𝐬𝐭 - Untuk menyimpan multiple foto/video dari post instagram\n/𝐛𝐢𝐨𝐢𝐠 - Untuk mengecek bio profil instagram\n/𝐩𝐫𝐨𝐟𝐢𝐥𝐢𝐠 - Untuk mengecek foto profil instagram\n/𝐬𝐭𝐨𝐫𝐲𝐢𝐠 - Untuk menyimpan foto atau video dari instastory\n/𝐡𝐥𝐢𝐠 - Untuk menyimpan foto atau video dari highlight story\n/𝐚𝐛𝐨𝐮𝐭 - Untuk mengetahui lebih lanjut tentang 𝙍𝙀:𝘽𝙊𝙏\n\n\n\u2665";
     const tutorFoto	 	= "Begini loh cara menggunakan commandnya\n\n/fotoig (link post instagram)";
     const tutorVid 		= "Begini loh cara menggunakan commandnya\n\n/videoig (link post instagram)";
     const tutorStory 	= "Begini loh cara menggunakan commandnya\n\n/storyig (username instagram) (story ke berapa)";
