@@ -128,6 +128,7 @@ app.get('/', (req, res) => {
             const linkhl = "highlight:"+uwu;
             got(`https://api.storiesig.com/highlight/${linkhl}`).json().then(res => {
                 const base = res.reels.$[linkhl];
+                console.log(base);
                 const stories = {story: [],preview: []};
 
                 for (let i = 0; i < base.length; i++) {
