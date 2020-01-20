@@ -132,8 +132,10 @@ app.get('/', (req, res) => {
             var link2;
         got(`https://api.storiesig.com/highlight/${linkhl}`).json().then(res => {
                 console.log("Res :" +res);
-                console.log("LinkHL2 :" +res.$[linkhl2]);
-                console.log("LinkHL :" +res.$[linkhl]);
+                console.log("Reels :" +res.reels);
+                console.log("Linkhl :" +res.$[linkhl]);
+                console.log("Reels Linkhl :" +res.reels.$[linkhl]);
+                console.log("items :" +res.reels.items);
                 const base = res.reels.linkhl2;
                 base[number2].video_versions === undefined ? link1 = base[i].image_versions2.candidates[0].url : link1 = base[i].video_versions[0].url;
                 link2 = base[i].image_versions2.candidates[0].url;
