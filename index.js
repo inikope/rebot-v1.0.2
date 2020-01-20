@@ -124,30 +124,28 @@ app.get('/', (req, res) => {
     	const p1 = got(id).json().then(res => {
 	    	const base = res.tray;
             return base[number1].id;
-        }).then(uwu => {
-            const linkhl = uwu;
-            got(`https://api.storiesig.com/highlight/${linkhl}`).json().then(res => {
+        })
+        Promise.all([p1]).then(function(values){
+            const linkhl = values[0];
+            var link1;
+            var link2;
+        got(`https://api.storiesig.com/highlight/${linkhl}`).json().then(res => {
                 const base = res.reels.$[linkhl];
                 console.log(base);
-                const stories = {story: [],preview: []};
-
-                for (let i = 0; i < base.length; i++) {
-                    base[i].video_versions === undefined ? stories.story.push(base[i].image_versions2.candidates[0].url) : stories.story.push(base[i].video_versions[0].url);
-                    stories.preview.push(base[i].image_versions2.candidates[0].url);
-                }
-                return stories;
-            });
-        });
-        Promise.all([p1]).then(function(values){
-        if(values[0].story[number].includes(".mp4")){
-            return client.replyMessage(token, {
-                type: "video", originalContentUrl: values[0].story[number], previewImageUrl: values[0].preview[number]
-            })
-        } else {
-            return client.replyMessage(token, {
-                type: "image", originalContentUrl: values[0].story[number], previewImageUrl: values[0].preview[number]
-            })
-        }})//.catch(function(){
+                base[number2].video_versions === undefined ? link1 = base[i].image_versions2.candidates[0].url : link1 = base[i].video_versions[0].url;
+                link2 = base[i].image_versions2.candidates[0].url;
+                return;
+            }).then(res => {
+                if(link1.includes(".mp4")){
+                    return client.replyMessage(token, {
+                        type: "video", originalContentUrl: link1, previewImageUrl: link2
+                    })
+                } else {
+                    return client.replyMessage(token, {
+                        type: "image", originalContentUrl: link1, previewImageUrl: link2
+                    })
+                }})
+    })//.catch(function(){
         //     return replyText(token,"Maaf, sepertinya ada yang salah...\nMungkin, akunnya private atau tidak sedang memiliki story...\natau jangan-jangan angka yang kamu masukkan kelebihan... ?")
         // });
 
