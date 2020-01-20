@@ -131,7 +131,6 @@ app.get('/', (req, res) => {
             var link1;
             var link2;
         got(`https://api.storiesig.com/highlight/${linkhl}`).json().then(res => {
-                console.log(res.reels[linkhl].items[number2]);
 //                console.log("Linkhl :" +res.$[linkhl]);
                 if(number2 === -1){
                     const base = res.reels[linkhl].cover_media;
@@ -294,7 +293,7 @@ app.get('/', (req, res) => {
             const story = splitText[3];
             switch (command){
                 case '/hlig':
-                    return hlig(event.replyToken, username, hightlight-1, story);
+                    return hlig(event.replyToken, username, hightlight-1, story-1);
                 default:
                     return replyText(event.replyToken, errormess);    
             }
