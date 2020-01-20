@@ -125,7 +125,7 @@ app.get('/', (req, res) => {
 	    	const base = res.tray;
             return base[number1].id;
         }).then(uwu => {
-            const linkhl = "highlight:"+uwu;
+            const linkhl = uwu;
             got(`https://api.storiesig.com/highlight/${linkhl}`).json().then(res => {
                 const base = res.reels.$[linkhl];
                 console.log(base);
