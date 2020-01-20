@@ -116,6 +116,43 @@ app.get('/', (req, res) => {
         });
     }
 
+    //Highlight IG
+    function hlig(token, igid, number1, number2) {
+        console.log("checked "+ number2 +" story from "+ number1 + " highlight of "+ igid);
+        const id = `https://api.storiesig.com/highlights/${igid}`;
+
+    	const p1 = got(id).json().then(res => {
+	    	const base = res.tray;
+            return base[number1].id;
+        }).then(uwu => {
+            got(`https://api.storiesig.com/highlight/${uwu}`).json().then(res => {
+                const base = res.items;
+                const stories = {story: [],preview: []};
+
+                for (let i = 0; i < base.length; i++) {
+                    base[i].video_versions === undefined ? stories.story.push(base[i].image_versions2.candidates[0].url) : stories.story.push(base[i].video_versions[0].url);
+                    stories.preview.push(base[i].image_versions2.candidates[0].url);
+                }
+                return stories;
+            });
+        });
+        Promise.all([p1]).then(function(values){
+        if(values[0].story[number].includes(".mp4")){
+            return client.replyMessage(token, {
+                type: "video", originalContentUrl: values[0].story[number], previewImageUrl: values[0].preview[number]
+            })
+        } else {
+            return client.replyMessage(token, {
+                type: "image", originalContentUrl: values[0].story[number], previewImageUrl: values[0].preview[number]
+            })
+        }}).catch(function(){
+            return replyText(token,"Maaf, sepertinya ada yang salah...\nMungkin, akunnya private atau tidak sedang memiliki story...\natau jangan-jangan angka yang kamu masukkan kelebihan... ?")
+        });
+
+
+
+    }
+
     // Multipost IG
     function IGmulti(token, igid, number){
         console.log("checked "+number+" multipost of "+ igid);
@@ -229,6 +266,7 @@ app.get('/', (req, res) => {
     const sendIntro 	= "𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh..\nCoba yuk!\nKetik /𝐡𝐞𝐥𝐩 untuk melihat command-command yang kami punya.\n\n\u2605";
     const aboutMe 		= "𝙍𝙀:𝘽𝙊𝙏 adalah chatbot yang dapat membantumu menyimpan foto maupun video dari Instagram.\n\n𝙍𝙀:𝘽𝙊𝙏 dibuat oleh:\n- [2201801636] Hans Nugroho Gianto Hadiwijaya\n- [2201758285] Casandra\n- [2201787915] Mita\n- [2201780631] Muhammad Rizqi Sulaiman\n- [2201825674] Muhammad Farkhan Mashuda\n\n\n\uD83C\uDF6C";
     const sendHello 	= "Welcome to 𝙍𝙀:𝘽𝙊𝙏!\n\n𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh..\nCoba yuk!\nKetik /𝐡𝐞𝐥𝐩 untuk melihat command-command yang kami punya.";
+    const tutorHL     = "Begini loh cara menggunakan commandnya\n\n/hlig (username instagram) (highlight keberapa) (story keberapa)\n\nContoh: /hlig _kopeyy 1 1\nOh iya! bisa juga 0 untuk ambil cover";
 
 
 	if (event.type === 'follow'){
@@ -241,6 +279,19 @@ app.get('/', (req, res) => {
         if(receivedMessage.includes("/echo ")){
             console.log("I'm echoing "+ receivedMessage.replace("/echo ",""));
             return replyText(event.replyToken, receivedMessage.replace("/echo ",""));
+        } else if (receivedMessage.split(" ").length === 4){
+            const splitText = receivedMessage.split(" ");
+            const command = splitText[0];
+            const username = splitText[1];
+            const hightlight = splitText[2];
+            const story = splitText[3];
+            switch (command){
+                case '/hlig':
+                    return hlig(event.replyToken, username, hightlight, story);
+                default:
+                    return replyText(event.replyToken, errormess);    
+            }
+
         } else if (receivedMessage.split(" ").length === 3){
             const splitText = receivedMessage.split(" ");
             const command = splitText[0];
@@ -252,6 +303,8 @@ app.get('/', (req, res) => {
                 case '/storyig':
                     const numbstory = parseInt(splitText[2]);
                     return IGstory(event.replyToken, link, numbstory-1);
+                case '/hlig':
+                    return replyText(event.replyToken, tutorHL);
                 default:
                     return replyText(event.replyToken, errormess);
             }
@@ -274,6 +327,8 @@ app.get('/', (req, res) => {
                     return profilIG(event.replyToken, link);
                 case '/multipost':
                     return replyText(event.replyToken, tutorMulti);
+                case '/hlig':
+                    return replyText(event.replyToken, tutorHL);
                 default:
                     return replyText(event.replyToken, errormess);
             }
@@ -297,6 +352,8 @@ app.get('/', (req, res) => {
                     return replyText(event.replyToken, tutorPP);
                 case '/about':
                     return replyText(event.replyToken, aboutMe);
+                case '/hlig':
+                    return replyText(event.replyToken, tutorHL);
                 default:
                     return replyText(event.replyToken, sendIntro);
             }
