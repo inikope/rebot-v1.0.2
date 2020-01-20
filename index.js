@@ -274,7 +274,6 @@ app.get('/', (req, res) => {
 	if (event.type === 'follow'){
 		return replyText(event.replyToken, sendHello);
 	} else if (event.type !== 'message' || event.message.type !== 'text') {
-      // ignore non-text-message event
       return replyText(event.replyToken, sendIntro);
     } else {
         const receivedMessage = event.message.text;
@@ -289,7 +288,7 @@ app.get('/', (req, res) => {
             const story = splitText[3];
             switch (command){
                 case '/hlig':
-                    return hlig(event.replyToken, username, hightlight, story);
+                    return hlig(event.replyToken, username, hightlight-1, story);
                 default:
                     return replyText(event.replyToken, errormess);    
             }
