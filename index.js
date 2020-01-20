@@ -147,9 +147,9 @@ app.get('/', (req, res) => {
             return client.replyMessage(token, {
                 type: "image", originalContentUrl: values[0].story[number], previewImageUrl: values[0].preview[number]
             })
-        }}).catch(function(){
-            return replyText(token,"Maaf, sepertinya ada yang salah...\nMungkin, akunnya private atau tidak sedang memiliki story...\natau jangan-jangan angka yang kamu masukkan kelebihan... ?")
-        });
+        }})//.catch(function(){
+        //     return replyText(token,"Maaf, sepertinya ada yang salah...\nMungkin, akunnya private atau tidak sedang memiliki story...\natau jangan-jangan angka yang kamu masukkan kelebihan... ?")
+        // });
 
 
 
