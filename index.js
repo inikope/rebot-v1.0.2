@@ -133,9 +133,15 @@ app.get('/', (req, res) => {
         got(`https://api.storiesig.com/highlight/${linkhl}`).json().then(res => {
                 console.log(res.reels[linkhl].items[number2]);
 //                console.log("Linkhl :" +res.$[linkhl]);
-                const base = res.reels[linkhl].items;
-                base[number2].video_versions === undefined ? link1 = base[number2].image_versions2.candidates[0].url : link1 = base[number2].video_versions[0].url;
-                link2 = base[i].image_versions2.candidates[0].url;
+                if(number2 === -1){
+                    const base = res.reels[linkhl].cover_media;
+                    link1 = base.cropped_image_version.url;
+                    link2 = link1;
+                } else {
+                    const base = res.reels[linkhl].items;
+                    base[number2].video_versions === undefined ? link1 = base[number2].image_versions2.candidates[0].url : link1 = base[number2].video_versions[0].url;
+                    link2 = base[number2].image_versions2.candidates[0].url;    
+                }
                 return;
             }).then(res => {
                 if(link1.includes(".mp4")){
