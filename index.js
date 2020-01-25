@@ -69,7 +69,7 @@ app.get('/', (req, res) => {
                 const fullName = (values[0].data)? values[0].data : '-';
                 const igbio = checkBio(values[1].data);
                 const iglink = (values[5].data)? values[5].data : '-';
-                const sendBio = "𝐍𝐚𝐦𝐚: "+ fullName +"\n𝐁𝐢𝐨:\n"+ igbio + "\n𝐏𝐨𝐬𝐭𝐬: "+ values[2].data +"\n𝐅𝐨𝐥𝐥𝐨𝐰𝐞𝐫𝐬: "+ values[3].data +"\n𝐅𝐨𝐥𝐥𝐨𝐰𝐢𝐧𝐠: "+ values[4].data +"\n𝐋𝐢𝐧𝐤: "+ iglink;
+                const sendBio = "Nama: "+ fullName +"\nBio:\n"+ igbio + "\nPosts: "+ values[2].data +"\nFollowers: "+ values[3].data +"\nFollowing: "+ values[4].data +"\nLink: "+ iglink;
                 return replyText(token, sendBio);    
             }).catch(function(){
                 return replyText(token,"Maaf, sepertinya ada yang salah...\nApakah kamu sudah memasukkan username yang benar?")
@@ -208,7 +208,7 @@ app.get('/', (req, res) => {
             return replyText(token,"Maaf, sepertinya akunnya private.")
         })
         Promise.all([p1]).then(function(values){
-            return replyText(token, "𝐂𝐚𝐩𝐭𝐢𝐨𝐧:\n" + values[0][0]);
+            return replyText(token, "Caption:\n" + values[0][0]);
             }).catch(function(){
                 return replyText(token,"Maaf, sepertinya akunnya private.")
             });
@@ -265,7 +265,7 @@ app.get('/', (req, res) => {
   function handleEvent(event) {
      
      //  Chats
-    const sendHelp 		= "𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh...\nCoba yuk command-command 𝙍𝙀:𝘽𝙊𝙏 berikut ini!\n\n\n/𝐡𝐞𝐥𝐩 - Untuk melihat command yang kami punya\n/𝐯𝐢𝐝𝐞𝐨𝐢𝐠 - Untuk menyimpan video dari instagram\n/𝐟𝐨𝐭𝐨𝐢𝐠 - Untuk menyimpan foto dari instagram\n/𝐜𝐚𝐩𝐭𝐢𝐨𝐧𝐢𝐠 - Untuk mengecek caption dari post di instagram\n/𝐦𝐮𝐥𝐭𝐢𝐩𝐨𝐬𝐭 - Untuk menyimpan multiple foto/video dari post instagram\n/𝐛𝐢𝐨𝐢𝐠 - Untuk mengecek bio profil instagram\n/𝐩𝐫𝐨𝐟𝐢𝐥𝐢𝐠 - Untuk mengecek foto profil instagram\n/𝐬𝐭𝐨𝐫𝐲𝐢𝐠 - Untuk menyimpan foto atau video dari instastory\n/𝐡𝐥𝐢𝐠 - Untuk menyimpan foto atau video dari highlight story\n/𝐚𝐛𝐨𝐮𝐭 - Untuk mengetahui lebih lanjut tentang 𝙍𝙀:𝘽𝙊𝙏\n\n\n\u2665";
+    const sendHelp 		= "RE:BOT dapat melakukan beberapa hal loh...\nCoba yuk command-command RE:BOT berikut ini!\n\n\n/help - Untuk melihat command yang kami punya\n/videoig - Untuk menyimpan video dari instagram\n/fotoig - Untuk menyimpan foto dari instagram\n/captionig - Untuk mengecek caption dari post di instagram\n/multipost - Untuk menyimpan multiple foto/video dari post instagram\n/bioig - Untuk mengecek bio profil instagram\n/profilig - Untuk mengecek foto profil instagram\n/storyig - Untuk menyimpan foto atau video dari instastory\n/hlig - Untuk menyimpan foto atau video dari highlight story\n/about - Untuk mengetahui lebih lanjut tentang RE:BOT\n\n\n\u2665";
     const tutorFoto	 	= "Begini loh cara menggunakan commandnya\n\n/fotoig (link post instagram)";
     const tutorVid 		= "Begini loh cara menggunakan commandnya\n\n/videoig (link post instagram)";
     const tutorStory 	= "Begini loh cara menggunakan commandnya\n\n/storyig (username instagram) (story ke berapa)";
@@ -273,10 +273,10 @@ app.get('/', (req, res) => {
     const tutorCek 		= "Begini loh cara menggunakan commandnya\n\n/bioig (username instagram)";
     const tutorPP 		= "Begini loh cara menggunakan commandnya\n\n/profilig (username instagram)";
     const tutorMulti    = "Begini loh cara menggunakan commandnya\n\n/multipost (link post instagram) (foto/video ke berapa)";
-    const errormess 	= "Terima kasih atas pesannya\nTapi maaf, aku ngga ngerti...\nCoba deh ketik /𝐡𝐞𝐥𝐩 nanti aku kasi tau command yang aku bisa \uD83D\uDE09";
-    const sendIntro 	= "𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh..\nCoba yuk!\nKetik /𝐡𝐞𝐥𝐩 untuk melihat command-command yang kami punya.\n\n\u2605";
-    const aboutMe 		= "𝙍𝙀:𝘽𝙊𝙏 adalah chatbot yang dapat membantumu menyimpan foto maupun video dari Instagram.\n\n𝙍𝙀:𝘽𝙊𝙏 dibuat oleh:\n- [2201801636] Hans Nugroho Gianto Hadiwijaya\n- [2201758285] Casandra\n- [2201787915] Mita\n- [2201780631] Muhammad Rizqi Sulaiman\n- [2201825674] Muhammad Farkhan Mashuda\n\n\n\uD83C\uDF6C";
-    const sendHello 	= "Welcome to 𝙍𝙀:𝘽𝙊𝙏!\n\n𝙍𝙀:𝘽𝙊𝙏 dapat melakukan beberapa hal loh..\nCoba yuk!\nKetik /𝐡𝐞𝐥𝐩 untuk melihat command-command yang kami punya.";
+    const errormess 	= "Terima kasih atas pesannya\nTapi maaf, aku ngga ngerti...\nCoba deh ketik /help nanti aku kasi tau command yang aku bisa \uD83D\uDE09";
+    const sendIntro 	= "RE:BOT dapat melakukan beberapa hal loh..\nCoba yuk!\nKetik /help untuk melihat command-command yang kami punya.\n\n\u2605";
+    const aboutMe 		= "RE:BOT adalah chatbot yang dapat membantumu menyimpan foto maupun video dari Instagram.\n\nRE:BOT dibuat oleh:\n- [2201801636] Hans Nugroho Gianto Hadiwijaya\n- [2201758285] Casandra\n- [2201787915] Mita\n- [2201780631] Muhammad Rizqi Sulaiman\n- [2201825674] Muhammad Farkhan Mashuda\n\n\n\uD83C\uDF6C";
+    const sendHello 	= "Welcome to RE:BOT!\n\nRE:BOT dapat melakukan beberapa hal loh..\nCoba yuk!\nKetik /help untuk melihat command-command yang kami punya.";
     const tutorHL     = "Begini loh cara menggunakan commandnya\n\n/hlig (username instagram) (highlight keberapa) (story keberapa)\n\nContoh: /hlig _kopeyy 1 1\nOh iya! bisa juga 0 untuk ambil cover";
 
 
