@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@line/bot-sdk": "^6.8.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "instagram-basic-data-scraper-with-username": "^4.0.1",
     "instagram-downloader": "0.0.0",
     "instory": "^1.0.2",
